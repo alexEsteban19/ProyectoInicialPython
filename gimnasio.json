@@ -1,0 +1,73 @@
+{
+    "nombre": "GYMRAT",
+    "fundado": 2006,
+    "clientes": [
+        {
+            "Nombre": "Alejandro",
+            "DNI": "52981068Q",
+            "Saldo del cliente": 1500
+        },
+        {
+            "Nombre": "Mario",
+            "DNI": "52951172C",
+            "Saldo del cliente": 1600
+        }
+    ],
+    "productos": [
+        {
+            "ID_Producto": 84993029,
+            "Marca": "Impact",
+            "Tipo": "Isolate",
+            "Peso": 2,
+            "Pureza": 90,
+            "Sabor": "Brownie",
+            "Precio": 89.99
+        },
+        {
+            "ID_Producto": 98765432,
+            "Marca": "MyProtein",
+            "Tipo": "Whey",
+            "Peso": 2,
+            "Pureza": 85,
+            "Sabor": "Vainilla y canela",
+            "Precio": 41.9
+        },
+        [
+            {
+                "ID_Producto": 34759832,
+                "Marca": "Bulk",
+                "Tipo": "Monohidratada",
+                "Peso": 0.5,
+                "Pureza": 95,
+                "Sabor": "Fresa",
+                "Precio": 35.99
+            },
+            {
+                "DosisMax": 3
+            }
+        ],
+        {
+            "ID_Producto": 56789078,
+            "Marca": "AreaProteica",
+            "Tipo": "Isolate",
+            "Peso": 4,
+            "Pureza": 85,
+            "Sabor": "Chocolate y avellanas",
+            "Precio": 55.9
+        },
+        [
+            {
+                "ID_Producto": 32342344,
+                "Marca": "Amix",
+                "Tipo": "Clorhidratada",
+                "Peso": 5,
+                "Pureza": 90,
+                "Sabor": "Neutro",
+                "Precio": 26.99
+            },
+            {
+                "DosisMax": 3
+            }
+        ]
+    ]
+}

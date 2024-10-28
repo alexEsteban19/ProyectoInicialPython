@@ -1,0 +1,56 @@
+Nombre del gimnasio: GYMRAT
+Fundado en el año: 2006
+
+CLIENTES DISPONIBLES:
+Nombre del cliente: Alejandro
+DNI del cliente: 52981068Q
+Saldo del cliente: 1500€
+----------------------------
+Nombre del cliente: Mario
+DNI del cliente: 52951172C
+Saldo del cliente: 1600€
+----------------------------
+
+PRODUCTOS DISPONIBLES:
+ID del producto: 84993029
+Marca del producto: Impact
+Tipo de producto: Isolate
+Peso del producto en KG: 2 KG
+Porcentaje de pureza del producto: 90%
+Sabor: Brownie
+Precio: 89.99€
+----------------------------
+ID del producto: 98765432
+Marca del producto: MyProtein
+Tipo de producto: Whey
+Peso del producto en KG: 2 KG
+Porcentaje de pureza del producto: 85%
+Sabor: Vainilla y canela
+Precio: 41.9€
+----------------------------
+ID del producto: 34759832
+Marca del producto: Bulk
+Tipo de producto: Monohidratada
+Peso del producto en KG: 0.5 KG
+Porcentaje de pureza del producto: 95%
+Sabor: Fresa
+Precio: 35.99€
+Dosis diaria máxima: 3g
+----------------------------
+ID del producto: 56789078
+Marca del producto: AreaProteica
+Tipo de producto: Isolate
+Peso del producto en KG: 4 KG
+Porcentaje de pureza del producto: 85%
+Sabor: Chocolate y avellanas
+Precio: 55.9€
+----------------------------
+ID del producto: 32342344
+Marca del producto: Amix
+Tipo de producto: Clorhidratada
+Peso del producto en KG: 5 KG
+Porcentaje de pureza del producto: 90%
+Sabor: Neutro
+Precio: 26.99€
+Dosis diaria máxima: 3g
+----------------------------
