@@ -2,3 +2,4 @@ Flask==3.0.3
 jsonify==0.5
 requests==2.32.3
 json==2.6
+os==3.1
