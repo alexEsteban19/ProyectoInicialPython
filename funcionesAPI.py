@@ -6,12 +6,12 @@ Created on Sun Oct 27 17:54:50 2024
 """
    
 from flask import Flask, jsonify
-   
+import os  
 def CrearApiMaquinas():
-    app = Flask(__name__)
+    maquinapi = Flask(__name__)
     
     # Lista 1.
-    @app.route("/api/ejerciciosGIMNASIO", methods = ['GET'])
+    @maquinapi.route("/api/ejercicios", methods = ['GET'])
     def obtener_ejercicios():
         datos = {
             "musculos": {
@@ -198,8 +198,9 @@ def CrearApiMaquinas():
                 }
             }
         return jsonify(datos)
+
     
-    @app.route("/api/ejerciciosGIMNASIO", methods = ['GET'])
+    @maquinapi.route("/api/maquinasGIMNASIO", methods = ['GET'])
     def obtener_ejercicios():
         datos = {
           "gimnasio": {
@@ -302,3 +303,8 @@ def CrearApiMaquinas():
             ]
           }
         }
+        
+    if __name__ == '__main__':
+        port = int(os.environ.get('PORT', 5000))
+        maquinapi.run(host='0.0.0.0', port=port)
+        
