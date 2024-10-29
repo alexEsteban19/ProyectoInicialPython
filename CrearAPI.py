@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Oct 27 17:54:50 2024
+Created on Tue Oct 29 19:39:32 2024
 
-@author: Alex
+@author: DAM
 """
-   
+
+import os
 from flask import Flask, jsonify
-import os  
+
 def CrearApiMaquinas():
     maquinapi = Flask(__name__)
     
-    # Lista 1.
-    @maquinapi.route("/api/ejercicios", methods = ['GET'])
+    @maquinapi.route("/api/ejercicios", methods=['GET'])
     def obtener_ejercicios():
         datos = {
             "musculos": {
@@ -195,116 +195,118 @@ def CrearApiMaquinas():
                         "repeticiones": 10
                     }
                 ]
-                }
             }
+        }
         return jsonify(datos)
 
-    
-    @maquinapi.route("/api/maquinasGIMNASIO", methods = ['GET'])
-    def obtener_ejercicios():
+    @maquinapi.route("/api/maquinasGIMNASIO", methods=['GET'])
+    def obtener_maquinas():
         datos = {
-          "gimnasio": {
-            "maquinas": [
-              {
-                "nombre": "Press de banca",
-                "tipo": "pesas libres",
-                "grupoMuscular": ["Pecho", "Tríceps", "Hombros"]
-              },
-              {
-                "nombre": "Leg Press",
-                "tipo": "máquina",
-                "grupoMuscular": ["Cuádriceps", "Glúteos", "Isquiotibiales"]
-              },
-              {
-                "nombre": "Remo sentado",
-                "tipo": "máquina",
-                "grupoMuscular": ["Espalda", "Bíceps"]
-              },
-              {
-                "nombre": "Máquina de abdominales",
-                "tipo": "máquina",
-                "grupoMuscular": ["Abdominales"]
-              },
-              {
-                "nombre": "Máquina de extensiones de piernas",
-                "tipo": "máquina",
-                "grupoMuscular": ["Cuádriceps"]
-              },
-              {
-                "nombre": "Máquina de curl de piernas",
-                "tipo": "máquina",
-                "grupoMuscular": ["Isquiotibiales"]
-              },
-              {
-                "nombre": "Press militar",
-                "tipo": "pesas libres",
-                "grupoMuscular": ["Hombros", "Tríceps"]
-              },
-              {
-                "nombre": "Pulsómetros",
-                "tipo": "cardio",
-                "grupoMuscular": ["Cardiovascular"]
-              },
-              {
-                "nombre": "Caminadora",
-                "tipo": "cardio",
-                "grupoMuscular": ["Cardiovascular", "Piernas"]
-              },
-              {
-                "nombre": "Bicicleta estática",
-                "tipo": "cardio",
-                "grupoMuscular": ["Cardiovascular", "Piernas"]
-              },
-              {
-                "nombre": "Pectoral Machine",
-                "tipo": "máquina",
-                "grupoMuscular": ["Pecho", "Hombros"]
-              },
-              {
-                "nombre": "Máquina de dorsales",
-                "tipo": "máquina",
-                "grupoMuscular": ["Espalda"]
-              },
-              {
-                "nombre": "Abductor Machine",
-                "tipo": "máquina",
-                "grupoMuscular": ["Glúteos", "Muslos"]
-              },
-              {
-                "nombre": "Adductor Machine",
-                "tipo": "máquina",
-                "grupoMuscular": ["Muslos internos"]
-              },
-              {
-                "nombre": "Smith Machine",
-                "tipo": "máquina",
-                "grupoMuscular": ["Varios"]
-              },
-              {
-                "nombre": "Trapecio Machine",
-                "tipo": "máquina",
-                "grupoMuscular": ["Trapecio", "Espalda"]
-              },
-              {
-                "nombre": "Máquina de fondos",
-                "tipo": "máquina",
-                "grupoMuscular": ["Tríceps", "Pecho"]
-              },
-              {
-                "nombre": "Máquina de remo inclinado",
-                "tipo": "máquina",
-                "grupoMuscular": ["Espalda", "Bíceps", "Piernas"]
-              },
-              {
-                "nombre": "Máquina de press de piernas",
-                "tipo": "máquina",
-                "grupoMuscular": ["Cuádriceps", "Glúteos"]
-              }
-            ]
-          }
+            "gimnasio": {
+                "maquinas": [
+                    {
+                        "nombre": "Press de banca",
+                        "tipo": "pesas libres",
+                        "grupoMuscular": ["Pecho", "Tríceps", "Hombros"]
+                    },
+                    {
+                        "nombre": "Leg Press",
+                        "tipo": "máquina",
+                        "grupoMuscular": ["Cuádriceps", "Glúteos", "Isquiotibiales"]
+                    },
+                    {
+                        "nombre": "Remo sentado",
+                        "tipo": "máquina",
+                        "grupoMuscular": ["Espalda", "Bíceps"]
+                    },
+                    {
+                        "nombre": "Máquina de abdominales",
+                        "tipo": "máquina",
+                        "grupoMuscular": ["Abdominales"]
+                    },
+                    {
+                        "nombre": "Máquina de extensiones de piernas",
+                        "tipo": "máquina",
+                        "grupoMuscular": ["Cuádriceps"]
+                    },
+                    {
+                        "nombre": "Máquina de curl de piernas",
+                        "tipo": "máquina",
+                        "grupoMuscular": ["Isquiotibiales"]
+                    },
+                    {
+                        "nombre": "Press militar",
+                        "tipo": "pesas libres",
+                        "grupoMuscular": ["Hombros", "Tríceps"]
+                    },
+                    {
+                        "nombre": "Pulsómetros",
+                        "tipo": "cardio",
+                        "grupoMuscular": ["Cardiovascular"]
+                    },
+                    {
+                        "nombre": "Caminadora",
+                        "tipo": "cardio",
+                        "grupoMuscular": ["Cardiovascular", "Piernas"]
+                    },
+                    {
+                        "nombre": "Bicicleta estática",
+                        "tipo": "cardio",
+                        "grupoMuscular": ["Cardiovascular", "Piernas"]
+                    },
+                    {
+                        "nombre": "Pectoral Machine",
+                        "tipo": "máquina",
+                        "grupoMuscular": ["Pecho", "Hombros"]
+                    },
+                    {
+                        "nombre": "Máquina de dorsales",
+                        "tipo": "máquina",
+                        "grupoMuscular": ["Espalda"]
+                    },
+                    {
+                        "nombre": "Abductor Machine",
+                        "tipo": "máquina",
+                        "grupoMuscular": ["Glúteos", "Muslos"]
+                    },
+                    {
+                        "nombre": "Adductor Machine",
+                        "tipo": "máquina",
+                        "grupoMuscular": ["Muslos internos"]
+                    },
+                    {
+                        "nombre": "Smith Machine",
+                        "tipo": "máquina",
+                        "grupoMuscular": ["Varios"]
+                    },
+                    {
+                        "nombre": "Trapecio Machine",
+                        "tipo": "máquina",
+                        "grupoMuscular": ["Trapecio", "Espalda"]
+                    },
+                    {
+                        "nombre": "Máquina de fondos",
+                        "tipo": "máquina",
+                        "grupoMuscular": ["Tríceps", "Pecho"]
+                    },
+                    {
+                        "nombre": "Máquina de remo inclinado",
+                        "tipo": "máquina",
+                        "grupoMuscular": ["Espalda", "Bíceps", "Piernas"]
+                    },
+                    {
+                        "nombre": "Máquina de press de piernas",
+                        "tipo": "máquina",
+                        "grupoMuscular": ["Cuádriceps", "Glúteos"]
+                    }
+                ]
+            }
         }
-        
-    if __name__ == '__main__':
-        port = int(os.environ.get('PORT', 5000))
-        maquinapi.run(host='0.0.0.0', port=port)
-        
+        return jsonify(datos)
+
+    return maquinapi
+
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    app = CrearApiMaquinas()
+    app.run(host='0.0.0.0', port=port)
