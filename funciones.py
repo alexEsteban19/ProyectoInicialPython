@@ -9,7 +9,7 @@ class Cliente:
         self.saldoCuenta = saldoCuenta
     
     def mostrarCliente(self):
-        return f"Nombre del cliente: {self.nombre}\nDNI del cliente: {self.dni}\nSaldo del cliente: {self.saldoCuenta}€\n----------------------------"
+        return f"Nombre del cliente: {self.nombre}\nDNI del cliente: {self.dni}\nSaldo del cliente: {self.saldoCuenta}€\n----------------------------\n"
         
         
     def restarSaldo(self, saldo):
@@ -55,8 +55,7 @@ class Proteina(Producto):
         super().__init__(idprod, marca, tipo, peso, pureza, sabor, precio)
         
     def mostrarProducto(self):
-        print("PROTEINA\n")
-        return super().mostrarProducto() + "\n----------------------------"
+        return f"PROTEINA:\n{super().mostrarProducto()}\n----------------------------\n"
 
     def to_dict(self):
         return super().to_dict()
@@ -68,8 +67,7 @@ class Creatina(Producto):
         self.dosisMax = dosisMax
             
     def mostrarProducto(self):
-        print("CREATINA\n")
-        return f"{super().mostrarProducto()}\nDosis diaria máxima: {self.dosisMax}g\n----------------------------"
+        return f"CREATINA:\n{super().mostrarProducto()}\nDosis diaria máxima: {self.dosisMax}g\n----------------------------\n"
     
     def to_dict(self):
         return super().to_dict(), {"DosisMax": self.dosisMax}
@@ -174,13 +172,18 @@ class Gym:
     def añadirProducto(self, productos):
         eleccion = int(input("¿Que tipo de producto quiere añadir?\n1. Proteina\n2. Creatina\n"))
         if eleccion == 1:
-            idprod = int(input("¿Cuál es el ID del producto?\n"))
+            idprod = 0
+            try:
+                idprod = int(input("¿Cuál es el ID del producto?\n"))
+            except ValueError:
+                print("No es un numero válido, saliendo de la creación de producto")
+                return
             marca = input("¿Cuál es la marca del producto?\n")
-            tipo = input("¿De qué tipo es el producto?\n")
-            peso = input("¿Cuál es el peso neto del producto?\n")
+            tipo = input("¿De qué tipo es la proteína(whey, isolate, mix)?\n")
+            peso = input("¿Cuál es el peso neto del producto en KG?\n")
             pureza = input("¿Cuál es el porcentaje de pureza del producto?\n")
             sabor = input("¿Cuál es el sabor del producto?\n")
-            precio = input("¿Cuánto cuesta?\n")
+            precio = input("¿Cuánto cuesta el producto(€/c)?\n")
         
             # Preguntamos si quiere confirmar la creación del cliente
             eleccion = input(f"Se añadirá un producto(Proteína) con los siguientes datos:\nID: {idprod}\nMarca: {marca}\nTipo: {tipo}\nPeso: {peso}Kg\nPureza: {pureza}%\nSabor: {sabor}\nPrecio: {precio}€\n¿Quiere confirmar (y/n)? ").lower()
@@ -196,16 +199,19 @@ class Gym:
                 dato = input("¿Qué dato quiere cambiar? (ID, Marca, tipo, peso, pureza, sabor, precio)\n").lower()
                 
                 if dato == "id":
-                    idprod = int(input("Introduce el nuevo ID del producto\n"))
+                    try:
+                        idprod = int(input("Introduce el nuevo ID del producto\n"))
+                    except ValueError:
+                        print("No es un número válido")
                     print()
-                if dato == "marca":
+                elif dato == "marca":
                     marca = input("Introduzca la nueva marca del producto\n")
                     print()
                 elif dato == "tipo":
-                    tipo = input("Introduzca el nuevo tipo de producto\n")
+                    tipo = input("Introduzca el nuevo tipo de proteína(whey, isolate, mix)\n")
                     print()
                 elif dato == "peso":
-                    peso = input("Introduzca el nuevo peso\n")
+                    peso = input("Introduzca el nuevo peso en KG\n")
                     print()
                 elif dato == "pureza":
                     pureza = input("Introduzca el nuevo porcentaje de pureza\n")
@@ -214,8 +220,12 @@ class Gym:
                     sabor = input("Introduzca el nuevo sabor\n")
                     print()
                 elif dato == "precio":
-                    precio = float(input("Introduzca el nuevo precio\n"))
-                    print()
+                    try:
+                        precio = float(input("Introduzca el nuevo precio en €/c\n"))
+                        print()
+                    except ValueError:
+                        print("No es un número válido, cancelando la creación del producto\n")
+                        return
                 else:
                     print("Opción inválida, cancelando creación del producto.\n")
                     print()
@@ -237,13 +247,19 @@ class Gym:
                 
         
         elif eleccion == 2:
-            idprod = int(input("¿Cuál es el ID del producto?\n"))
+            idprod = 0
+            try:
+                idprod = int(input("¿Cuál es el ID del producto?\n"))
+            except ValueError:
+                print("No es un numero válido, saliendo de la creación de producto")
+                return
+            
             marca = input("¿Cuál es la marca del producto?\n")
-            tipo = input("¿De qué tipo es el producto?\n")
+            tipo = input("¿De qué tipo es la creatina(monohidratada, clorhidratada)?\n")
             peso = input("¿Cuál es el peso neto del producto en KG?\n")
             pureza = input("¿Cuál es el porcentaje de pureza del producto?\n")
             sabor = input("¿Cuál es el sabor del producto?\n")
-            precio = input("¿Cuánto cuesta?\n")
+            precio = input("¿Cuánto cuesta el producto(€/c)?\n")
             dosisMax = input("¿Cuál es la dosis diaria máxima recomendada en gramos?\n")
             
             # Preguntamos si quiere confirmar la creación del cliente
@@ -258,13 +274,16 @@ class Gym:
                 dato = input("¿Qué dato quiere cambiar? (ID, marca, tipo, peso, pureza, sabor, precio, dosisMax)\n").lower()
         
                 if dato == "id":
-                    idprod = int(input("Introduce el nuevo ID del producto"))
+                    try:
+                        idprod = int(input("Introduce el nuevo ID del producto\n"))
+                    except ValueError:
+                        print("No es un número válido")
                     print()
-                if dato == "marca":
+                elif dato == "marca":
                     marca = input("Introduzca la nueva marca del producto\n\n")
                     print()
                 elif dato == "tipo":
-                    tipo = input("Introduzca el nuevo tipo de producto\n\n")
+                    tipo = input("Introduzca el nuevo tipo de creatina(monohidratada, clorhidratada)\n\n")
                     print()
                 elif dato == "peso":
                     peso = input("Introduzca el nuevo peso en KG\n\n")
@@ -276,11 +295,20 @@ class Gym:
                     sabor = input("Introduzca el nuevo sabor\n")
                     print()
                 elif dato == "precio":
-                    precio = float(input("Introduzca el nuevo precio\n"))
-                    print()
+                    try:
+                        precio = float(input("Introduzca el nuevo precio en €/c\n"))
+                        print()
+                    except ValueError:
+                        print("No es un número válido, cancelando la creación del producto\n")
+                        return
+                    
                 elif dato == "dosismax":
-                    precio = float(input("Introduzca la nueva dosis máxima\n"))
-                    print()
+                    try:
+                        dosisMax = float(input("Introduzca la nueva dosis máxima\n"))
+                        print()
+                    except ValueError:
+                        print("No es un número válido, cancelando la creación del producto\n")
+                        return
                 else:
                     print("Opción inválida, cancelando creación del producto.\n")
                     print()
@@ -307,7 +335,8 @@ class Gym:
     def borrarCliente(self, clientes):      
         print("Clientes disponibles:\n\n")
         for cliente in self.clientes:
-            cliente.mostrarCliente()
+            print(cliente.mostrarCliente())
+            
             
         dni = input("Introduce el DNI del cliente que deseas borrar: ")
         
@@ -317,16 +346,19 @@ class Gym:
                 print(f"El cliente con DNI: {cliente.dni} ha sido borrado correctamente.\n")
                 return  # Salir después de borrar el cliente
         
-        print("No se ha encontrado al cliente con DNI: {dni}")
+        print(f"No se ha encontrado al cliente con DNI: {dni}")
             
 
     
     def borrarProducto(self, productos) :
         print("Productos disponibles:\n\n")
         for producto in self.productos:
-            producto.mostrarProducto()
-            
-        idprod = input("Introduce el ID del producto que deseas borrar: ")
+            print(producto.mostrarProducto())
+        try:    
+            idprod = int(input("Introduce el ID del producto que deseas borrar: "))
+        except ValueError:
+            print("No es un número válido, cancelando la eliminación del producto\n")
+            return
         
         for producto in productos:
             if producto.idprod == idprod:
@@ -334,21 +366,20 @@ class Gym:
                 print(f"El producto con ID: {producto.idprod} ha sido borrado correctamente.\n")
                 return  # Salir después de borrar el cliente
         
-        print("No se ha encontrado el producto con ID: {idprod}")
+        print(f"No se ha encontrado el producto con ID: {idprod}")
         
     
     def modificarCliente(self, clientes):
         
         print("Clientes disponibles:\n")
         for cliente in self.clientes:
-            cliente.mostrarCliente()
+            print(cliente.mostrarCliente())
         
         dni = input("Introduce el DNI del cliente que deseas modificar: ")
         
         for cliente in self.clientes:
             if cliente.dni == dni:
-                print(f"Cliente encontrado:\n") 
-                cliente.mostrarCliente()
+                print(f"Cliente encontrado:\n", cliente.mostrarCliente()) 
                 print()
                 while True:
                     campo = input("¿Qué campo deseas modificar? (nombre, dni, saldo) o escribe 'salir' para terminar la modificación: ").lower()
@@ -389,14 +420,17 @@ class Gym:
         
         print("Productos disponibles:\n")
         for producto in self.productos:
-            producto.mostrarProducto()
+            print(producto.mostrarProducto())
         
-        idprod = int(input("Introduce el ID del producto que deseas modificar: "))
+        try:    
+            idprod = int(input("Introduce el ID del producto que deseas modificar: "))
+        except ValueError:
+            print("No es un número válido, cancelando la modificación del producto\n")
+            return
         
         for producto in self.productos:
             if producto.idprod == idprod:
-                print(f"Producto encontrado:\n") 
-                producto.mostrarProducto()
+                print(f"Producto encontrado:\n", producto.mostrarProducto()) 
                 if isinstance(producto, Proteina):
                     print()
                     while True:
@@ -458,7 +492,7 @@ class Gym:
                             return
                         
                         else:
-                            print("Campo no válido. Por favor, elige nombre, dni, saldo o salir.")
+                            print("Campo no válido. Por favor, elige (ID, marca, tipo, peso, pureza, sabor, precio) o escribe 'salir' para terminar la modificación:")
                             print()
                     return  # Salir después de modificar el cliente
                 
@@ -533,10 +567,37 @@ class Gym:
                             return
                         
                         else:
-                            print("Campo no válido. Por favor, elige nombre, dni, saldo o salir.")
+                            print("Campo no válido. Por favor, elige (ID, marca, tipo, peso, pureza, sabor, precio, dosisMax) o escribe 'salir' para terminar la modificación:")
                             print()
                     return  # Salir después de modificar el cliente
         print("El cliente con DNI: {dni} no se encontró.")
         print()
+        
+    
+    # Método para buscar productos según un atributo
+    def buscar_productos_por_marca(self, productos):
+        marcas_validas = {"impact", "myprotein", "bulk", "areaproteica", "amix"}
+        
+        while True:
+            opcion = input("¿Qué marca de producto desea ver? (Impact, MyProtein, Bulk, AreaProteica, Amix): ").lower()
+            
+            if opcion not in marcas_validas:
+                print("Marca no válida. Intenta de nuevo.")
+                continue
+            
+            productos_encontrados = False
+            
+            for producto in productos:
+                if producto.marca.lower() == opcion:
+                    print(f"Producto encontrado:\n{producto.mostrarProducto()}")
+                    productos_encontrados = True
+                    
+            if not productos_encontrados:
+                print("No se encontraron productos de esa marca.")
+            
+            break  # Salir del bucle si se encuentra la marca válida
+
+
+
 
 

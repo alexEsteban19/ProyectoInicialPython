@@ -5,7 +5,8 @@ Created on Tue Oct 29 16:55:34 2024
 @author: DAM
 """
 import funciones as fun
-import funcionesAPI as api
+import CrearAPI as api
+import LlamarAPI as lapi
 
 contraseña = "a"
 intentos = 3
@@ -27,82 +28,83 @@ productos = [
 miGym = fun.Gym("GYMRAT", 2006, clientes, productos)
 
 def mostrar_menu_admin():
-    return int(input("Bienvenido administrador, ¿qué desea gestionar?\n"
-                     "CLIENTES\n1. Añadir clientes\n"
-                     "2. Eliminar clientes\n"
-                     "3. Modificar clientes\n"
-                     "4. Mostrar Clientes Actuales\n"
-                     "-----------------------------\n"
-                     "PRODUCTOS\n5. Añadir producto\n"
-                     "6. Borrar producto\n"
-                     "7. Modificar productos\n"
-                     "8. Mostrar productos actuales\n"
-                     "-----------------------------\n"
-                     "GIMNASIO\n9. Generar archivo del gimnasio\n"
-                     "10. Salir del modo administrador\n"))
+    while True:
+        try:
+            return int(input("Bienvenido administrador, ¿qué desea gestionar?\n"
+                             "CLIENTES\n1. Añadir clientes\n"
+                             "2. Eliminar clientes\n"
+                             "3. Modificar clientes\n"
+                             "4. Mostrar Clientes Actuales\n"
+                             "-----------------------------\n"
+                             "PRODUCTOS\n5. Añadir producto\n"
+                             "6. Borrar producto\n"
+                             "7. Modificar productos\n"
+                             "8. Mostrar productos actuales\n"
+                             "-----------------------------\n"
+                             "GIMNASIO\n9. Generar archivo del gimnasio\n"
+                             "10. Salir del modo administrador\n"))
+        except ValueError:
+            print("Por favor ingresa un número válido.")
 
 def gestionar_admin():
     global intentos
     while intentos > 0:
-        intento_contra = input("Introduzca la contraseña:\n")
+        intento_contra = input("Ha elegido la opción de administrador, introduzca la contraseña:\n")
         if intento_contra == contraseña:
             while True:
                 eleccion = mostrar_menu_admin()
-                match eleccion:
-                    case 1: miGym.añadirCliente(clientes)
-                    case 2: miGym.borrarCliente(clientes)
-                    case 3: miGym.modificarCliente(clientes)
-                    case 4:
-                        for cliente in clientes:
-                            cliente.mostrarCliente()
-                    case 5: miGym.añadirProducto(productos)
-                    case 6: miGym.borrarProducto(productos)
-                    case 7: miGym.modificarProducto(productos)
-                    case 8:
-                        for producto in productos:
-                            producto.mostrarProducto()
-                    case 9: miGym.guardarInfo()
-                    case 10:
-                        print("Saliendo del modo administrador...")
-                        return
+                try:
+                    match eleccion:
+                        case 1: miGym.añadirCliente(clientes)
+                        case 2: miGym.borrarCliente(clientes)
+                        case 3: miGym.modificarCliente(clientes)
+                        case 4:
+                            print("Clientes:\n")
+                            for cliente in clientes:                            
+                                print(cliente.mostrarCliente())
+                        case 5: miGym.añadirProducto(productos)
+                        case 6: miGym.borrarProducto(productos)
+                        case 7: miGym.modificarProducto(productos)
+                        case 8:
+                            print("Productos:\n")
+                            for producto in productos:
+                                print(producto.mostrarProducto())
+                        case 9: miGym.guardarInfo()
+                        case 10:
+                            print("Saliendo del modo administrador...\n")
+                            return
+                        case _: 
+                            print("Opción no válida.")
+                except AttributeError as e:
+                    print(f"Error en la ejecución de la opción seleccionada: {e}")
         else:
             intentos -= 1
             print(f"Contraseña incorrecta. Intentos restantes: {intentos}")
 
-    print("No hay más intentos. Saliendo...")
+    print("No hay más intentos. Saliendo...\n")
+    return
 
 def mostrar_menu_usuario():
-    return int(input("Bienvenido usuario, ¿qué desea gestionar?\n"
-                     "CLIENTES\n1. Añadir clientes\n"
-                     "2. Eliminar clientes\n"
-                     "3. Modificar clientes\n"
-                     "4. Mostrar Clientes Actuales\n"
-                     "-----------------------------\n"
-                     "PRODUCTOS\n5. Añadir producto\n"
-                     "6. Borrar producto\n"
-                     "7. Modificar productos\n"
-                     "8. Mostrar productos actuales\n"
-                     "-----------------------------\n"
-                     "GIMNASIO\n9. Generar archivo del gimnasio\n"
-                     "10. Salir\n"))
+    while True:
+        try:
+            return int(input("Bienvenido usuario. ¿Qué desea?\n"
+                             "1. Acceder a la API del gimnasio\n"
+                             "2. Buscar producto\n"
+                             "3. Salir\n"))
+        except ValueError:
+            print("Por favor ingresa un número válido.")
 
 def gestionar_usuario():
     while True:
         eleccion = mostrar_menu_usuario()
-        match eleccion:
-            case 1: miGym.añadirCliente(clientes)
-            case 2: miGym.borrarCliente(clientes)
-            case 3: miGym.modificarCliente(clientes)
-            case 4:
-                for cliente in clientes:
-                    cliente.mostrarCliente()
-            case 5: miGym.añadirProducto(productos)
-            case 6: miGym.borrarProducto(productos)
-            case 7: miGym.modificarProducto(productos)
-            case 8:
-                for producto in productos:
-                    producto.mostrarProducto()
-            case 9: miGym.guardarInfo()
-            case 10:
-                print("Saliendo...")
-                return
+        try:
+            match eleccion:
+                case 1: lapi.obtener_datos_api()
+                case 2: miGym.buscar_productos_por_marca(productos)
+                case 3:
+                    print("Saliendo del modo usuario...")
+                    return
+                case _:
+                    print("Opción no válida.")
+        except AttributeError as e:
+            print(f"Error en la ejecución de la opción seleccionada: {e}")

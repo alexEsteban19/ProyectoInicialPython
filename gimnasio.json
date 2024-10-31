@@ -1,7 +1,7 @@
 {
-    "nombre": "GYMRAT",
-    "fundado": 2006,
-    "clientes": [
+    "Nombre": "GYMRAT",
+    "Fundado": 2006,
+    "Clientes": [
         {
             "Nombre": "Alejandro",
             "DNI": "52981068Q",
@@ -13,7 +13,7 @@
             "Saldo del cliente": 1600
         }
     ],
-    "productos": [
+    "Productos": [
         {
             "ID_Producto": 84993029,
             "Marca": "Impact",

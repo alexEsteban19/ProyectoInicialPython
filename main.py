@@ -9,5 +9,5 @@ while True:
         case 2:
             prin.gestionar_usuario()
         case 3:
-            prin.print("Saliendo...")
+            print("Saliendo...\n")
             break
